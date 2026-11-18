@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10273f">
+  <meta name="description" content="华南师范大学电子与信息工程学院 · 集成电路与 FPGA 学术交互展示">
+  <title>可重构的基石 · FPGA | 华南师范大学</title>
+  <link rel="icon" href="assets/brand/scnu_logo_transparent.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="research.css">
+</head>
+<body>
+  <main id="audience" aria-label="幻灯片展示">
+    <div id="viewport"><div id="canvas" aria-live="polite"></div></div>
+    <nav id="controls" aria-label="演示控制">
+      <button class="brand-button" data-action="home" title="返回封面">SCNU <span>FPGA</span></button>
+      <div id="chapter-nav"></div>
+      <div class="control-tools">
+        <button data-action="overview" title="全篇概览 O">概览</button>
+        <button data-action="library" title="文献与图证 E">文献</button>
+        <button data-action="presenter" title="独立演讲者窗口 P">讲者</button>
+        <button data-action="fullscreen" title="全屏 F" aria-label="切换全屏">⛶</button>
+        <button data-action="help" title="操作帮助 ?" aria-label="操作帮助">?</button>
+        <span class="control-divider"></span>
+        <button data-action="prev" aria-label="上一页" title="上一页 ←">←</button>
+        <button id="page-indicator" data-action="goto" title="跳转页面 G">01 <small>/ 20</small></button>
+        <button data-action="next" aria-label="下一页" title="下一页 →">→</button>
+      </div>
+      <div id="deck-progress"></div>
+    </nav>
+  </main>
+  <div id="blackout" hidden><span>按 B 或 Esc 恢复展示</span></div>
+  <dialog id="overview-dialog" class="wide-dialog">
+    <div class="dialog-head"><div><span class="eyebrow">PRESENTATION MAP</span><h2>全篇概览</h2></div><button data-close aria-label="关闭">×</button></div>
+    <div id="overview-grid"></div>
+  </dialog>
+  <dialog id="library-dialog" class="wide-dialog">
+    <div class="dialog-head"><div><span class="eyebrow">RESEARCH LIBRARY</span><h2>文献与图证</h2></div><button data-close aria-label="关闭">×</button></div>
+    <div class="library-toolbar"><div class="tab-buttons"><button class="selected" data-library-tab="references">参考文献</button><button data-library-tab="evidence">论文与专利图</button><button data-library-tab="figures">机制与对照图</button></div><input id="library-search" type="search" placeholder="搜索作者、标题、来源或编号" aria-label="搜索文献与图证"></div>
+    <div id="library-results"></div>
+  </dialog>
+  <dialog id="image-dialog">
+    <div class="image-head"><div><span id="image-kicker" class="eyebrow"></span><h2 id="image-title"></h2></div><div class="image-tools"><button data-action="zoomout" aria-label="缩小">−</button><button id="zoom-label" data-action="zoomreset" title="复位">100%</button><button data-action="zoomin" aria-label="放大">+</button><a id="image-pdf" target="_blank" rel="noopener">原始 PDF ↗</a><button data-close aria-label="关闭">×</button></div></div>
+    <div id="image-stage"><img id="zoom-image" alt="学术原图"></div>
+    <p id="image-caption"></p>
+  </dialog>
+  <dialog id="help-dialog" class="small-dialog">
+    <div class="dialog-head"><h2>现场演示</h2><button data-close aria-label="关闭">×</button></div>
+    <div class="shortcuts"><p><kbd>←</kbd><kbd>→</kbd><kbd>Space</kbd> 翻页</p><p><kbd>Home</kbd><kbd>End</kbd> 首尾页</p><p><kbd>O</kbd> 全篇概览 <kbd>G</kbd> 页码跳转</p><p><kbd>E</kbd> 文献与图证 <kbd>P</kbd> 演讲者窗口</p><p><kbd>F</kbd> 全屏 <kbd>B</kbd> 黑屏 <kbd>L</kbd> 激光指示</p><p><kbd>Esc</kbd> 关闭弹层</p></div>
+    <p class="help-note">点击论文或图表可放大，滚轮缩放后可拖动。第 2、19 页可跳转章节或证据页。第 7、8、11、12、14、16、18 页可操作实验与架构示意。双屏展示时，将主窗口投影，讲者窗口留在电脑屏幕。浏览器打印可保存 20 页静态 PDF。</p>
+    <button class="primary-button" data-action="print">打印 / 保存 PDF</button>
+  </dialog>
+  <dialog id="goto-dialog" class="small-dialog"><form method="dialog" id="goto-form"><div class="dialog-head"><h2>跳转页面</h2><button type="button" data-close aria-label="关闭">×</button></div><label for="goto-number">输入 1–20</label><input id="goto-number" type="number" min="1" max="20" required><button class="primary-button" type="submit">前往</button></form></dialog>
+  <div id="laser" hidden></div>
+  <div id="toast" role="status"></div>
+  <noscript>请使用启用 JavaScript 的现代浏览器打开本地文件。</noscript>
+  <script src="content.js"></script>
+  <script src="slides.js"></script>
+  <script src="research.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
