@@ -116,14 +116,19 @@
         '</div><b class="metric-value ' + labelSide + '" style="--end:' + length + '%">' + low + (high ? '–' + high : '') + '×</b></div></div>';
     }).join('');
     const axis = item.ticks.map(tick => '<span>' + tick + '</span>').join('');
-    return '<div class="metric-caption">' + item.title + ' <small>90 nm CMOS · 线性轴从 0 开始</small></div><div class="metric-rows">' +
-      rows + '</div><div class="metric-axis">' + axis + '</div><p class="metric-note fine">' + item.note + '</p>';
+    return '<div class="metric-caption">' + item.title + ' <small>90 nm CMOS · 线性轴从 0 开始</small></div>' +
+      '<div class="metric-chart" style="--tick-spacing:' + 100 / (item.ticks.length - 1) + '%"><div class="metric-rows">' +
+      rows + '</div><div class="metric-axis">' + axis +
+      '</div></div><p class="metric-note fine">' + item.note + '</p>';
   }
 
-  byPage(8).body = '<div class="two-column"><div class="stack">' +
+  byPage(8).body = '<div class="benchmark-layout"><div class="benchmark-main">' +
     panel('FPGA / ASIC', 'benchmark', [['area', '面积'], ['delay', '延迟'], ['power', '动态功耗']], benchmarkMarkup('area'), 'benchmark-lab') +
-    '<div class="benchmark-summary"><p><b>≈35×</b><span>纯逻辑面积</span></p><p><b>3.4–4.6×</b><span>平均关键路径延迟</span></p><p><b>≈14×</b><span>动态功耗</span></p></div></div><div class="bench-papers">' +
-    paper(4, '论文摘要 · 实验口径') + paper(5, 'Table II · 面积数据原表') + '</div></div>';
+    '<div class="benchmark-summary"><p data-benchmark-summary="area"><b>≈35×</b><span>纯逻辑面积</span></p>' +
+    '<p data-benchmark-summary="delay"><b>3.4–4.6×</b><span>平均关键路径延迟</span></p>' +
+    '<p data-benchmark-summary="power"><b>≈14×</b><span>动态功耗</span></p></div></div>' +
+    '<div class="benchmark-evidence">' + paper(5, 'Table II · 论文面积数据') +
+    '<button class="evidence-link" data-image="4">查看论文摘要与实验条件 ↗</button></div></div>';
   byPage(9).subtitle = '专用硬核减少纯逻辑的开销。选择计算架构时，还需结合负载、开发周期和系统约束。';
   byPage(9).body = byPage(9).body
     .replace(/<div class="radar-panel">[\s\S]+?<\/div><\/div>$/, '<div class="radar-panel">' +
@@ -299,10 +304,16 @@
         block.classList.toggle('engine-active', block.dataset.engineTarget === accelerator[value].target));
       replay(document.querySelector('.noc-bus'), 'engine-signal');
     }
+    if (name === 'benchmark') {
+      for (const summary of document.querySelectorAll('[data-benchmark-summary]')) {
+        summary.classList.toggle('metric-current', summary.dataset.benchmarkSummary === value);
+      }
+    }
     if (name === 'catapult') {
       const metrics = [...document.querySelectorAll('[data-case="catapult"] .stat')];
       metrics.forEach((metric, i) => metric.classList.toggle('metric-selected', i === (value === 'latency' ? 0 : 1)));
       replay(metrics[value === 'latency' ? 0 : 1], 'metric-pulse');
+      replay(document.querySelector('.case-network'), 'network-trace');
       readout.textContent = value === 'latency'
         ? '在相近时延分布下，比较单位服务器的排序吞吐。'
         : '在排序吞吐相当时，比较响应分布的尾延迟。';

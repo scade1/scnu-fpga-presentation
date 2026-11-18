@@ -486,7 +486,7 @@
       if (event.data?.type === 'deck-ready') publishState();
     }
   });
-  go(page, false);
+  go(page);
   updateLut();
   selectCase('catapult');
   setLibraryTab('references');
