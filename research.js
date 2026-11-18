@@ -60,15 +60,16 @@
 
   byPage(3).subtitle = '单片集成与平面互连推动芯片规模化。FPGA 在这一物理基础上，把硬件功能的选择延伸到出厂之后。';
   byPage(3).citation += ' 时间轴节点依据相关专利、Trimberger（2015）及中国产业政策。';
-  byPage(3).body = '<div class="history-opening"><div class="history-top"><div class="history-origins">' + [
+  byPage(3).body = '<div class="history-opening"><div class="history-origins">' + [
     ['1959', '单基底集成', 'Kilby 申请集成电路专利'],
     ['1961', '平面互连', 'Noyce 专利获批'],
     ['1965', '集成规模', 'Moore 讨论最低成本对应的元件数'],
     ['1974', '恒电场缩放', 'Dennard 等提出等比例缩放模型'],
   ].map(([year, title, detail]) =>
     '<div><span>' + year + '</span><h3>' + title + '</h3><p>' + detail + '</p></div>'
-  ).join('') + '</div><div class="history-patents">' + paper(8, 'Kilby · 集成电路专利') + paper(9, 'Noyce · 平面互连专利') +
-    '</div></div><div class="history-map">' + paper('f1', '从集成电路到 FPGA 的关键节点', 'flat') + '</div></div>';
+  ).join('') + '</div><div class="history-map">' + paper('f1', '从集成电路到 FPGA 的关键节点', 'flat') +
+    '</div><div class="history-sources"><button class="evidence-link" data-image="8">Kilby 集成电路专利 ↗</button>' +
+    '<button class="evidence-link" data-image="9">Noyce 平面互连专利 ↗</button></div></div>';
   byPage(6).subtitle = '从政策与产业布局收束到具体型号，以下用 GW5AST-138 观察资源清单如何体现芯片能力。';
   byPage(7).subtitle = '输入是地址，配置位决定输出。改变输入或逻辑函数，可逐步观察查表过程。';
   byPage(7).body = byPage(7).body

@@ -68,15 +68,11 @@
 .story-map .roadmap-step h3 { margin: 0; font-size: 24px; }
 .story-map .roadmap-step p { line-height: 1.45; }
 .history-opening { display: grid; height: 100%; grid-template-rows: 226px minmax(0, 1fr); gap: 21px; }
-.history-top { display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr); gap: 28px; }
 .history-origins { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px 23px; }
 .history-origins > div { padding: 12px 0 5px; border-top: 1px solid #9fb8c7; }
 .history-origins span { font: 700 25px var(--number); color: var(--blue); }
 .history-origins h3 { font-size: 20px; margin: 3px 0; }
 .history-origins p { font-size: 16px; color: var(--muted); }
-.history-patents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.history-patents .paper { height: 226px; }
-.history-patents img { object-fit: cover; object-position: center 12%; padding: 0; }
 .history-map .paper { width: 100%; height: 100%; }
 .history-map .paper img { padding: 0; }
 

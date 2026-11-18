@@ -212,7 +212,7 @@
         <h1>${escape(slide.title)}</h1>
         ${slide.subtitle ? `<p class="subtitle">${escape(slide.subtitle)}</p>` : ''}
       </header>`;
-    return `<article class="slide${slide.dark ? ' dark' : ''}${slide.cover ? ' cover' : ''}" data-slide="${slideNumber}" aria-label="第 ${slideNumber} 页 · ${escape(slide.short)}">
+    return `<article class="slide${slide.dark ? ' dark' : ''}${slide.cover ? ' cover' : ''}" data-slide="${slideNumber}" data-chapter="${slide.chapter}" aria-label="第 ${slideNumber} 页 · ${escape(slide.short)}">
       ${header}${slide.cover ? slide.body : `<div class="slide-body">${slide.body}</div>`}
       <footer class="slide-footer"><div class="citation">${citationHtml(slide.citation || '')}</div><span class="folio">${fmt(slideNumber)} / ${slides.length}</span></footer>
     </article>`;
